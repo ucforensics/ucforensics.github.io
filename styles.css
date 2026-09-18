@@ -1,10 +1,8 @@
-Paste this into **styles.css**, in the same folder as **index.html** and **other.htm**.
-
 ```css
 :root {
   color-scheme: dark;
   --bg: #080f17;
-  --panel: #101e29;
+  --panel: #00ff00;
   --line: #293944;
   --text: #f1f3ef;
   --muted: #aebcc6;
