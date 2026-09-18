@@ -33,7 +33,7 @@ if (gallery) {
     const image = new Image(1200, 800);
     const number = String(index + 1).padStart(3, "0");
 
-    image.alt = `Conceptual forensic science illustration: ${subject}`;
+    image.alt = ``;
     image.decoding = "async";
     image.src = `i_forensic${number}.png`;
 
