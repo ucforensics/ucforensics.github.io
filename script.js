@@ -69,7 +69,7 @@ Replace **script.js** with:
 
     function imageSource(index) {
       const number = String(index + 1).padStart(3, "0");
-      return `i_forensic${number}.jpg`;
+      return `i_forensic${number}.png`;
     }
 
     function updateCounter() {
