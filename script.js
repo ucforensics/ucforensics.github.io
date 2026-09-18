@@ -35,7 +35,7 @@ if (gallery) {
 
     image.alt = `Conceptual forensic science illustration: ${subject}`;
     image.decoding = "async";
-    image.src = `i_forensic${number}.jpg`;
+    image.src = `i_forensic${number}.png`;
 
     return image;
   });
