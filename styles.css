@@ -254,7 +254,7 @@ h1 span {
 .gallery-controls button:hover {
   color: var(--accent);
   border-color: var(--line);
-  background: #21343c;
+  background: #00ff00;
 }
 
 #counter {
