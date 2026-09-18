@@ -1,13 +1,134 @@
-'use strict';
-// Place i_forensic001.png through i_forensic013.png beside index.html.
-const filenames = Array.from({length:13}, (_, i) => `i_forensic${String(i + 1).padStart(3, '0')}.png`);
-const gallery = document.querySelector('.gallery');
-const slides = document.querySelector('.slides');
-const pause = document.querySelector('#pause');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-let photos = [], current = 0, timer, playing = !reducedMotion.matches;
-function stop(){ clearInterval(timer); }
-function schedule(){stop();if(playing && !document.hidden && photos.length>1) timer=setInterval(()=>show(current+1),5500);}
-function show(index){current=(index+photos.length)%photos.length;slides.replaceChildren(photos[current]);document.querySelector('#counter').textContent=`${String(current+1).padStart(2,'0')} / ${String(photos.length).padStart(2,'0')}`;}
-function updatePause(){pause.textContent=playing?'Ⅱ':'▶';pause.setAttribute('aria-label',playing?'Pause slideshow':'Play slideshow');schedule();}
-Promise.all(filenames.map((src,i)=>new Promise(resolve=>{const img=new Image();img.alt=`Forensic Science photograph ${i+1}`;img.onload=()=>resolve(img);img.onerror=()=>resolve(null);img.src=src;}))).then(images=>{photos=images.filter(Boolean);if(!photos.length)return;gallery.hidden=false;show(0);document.querySelector('#prev').onclick=()=>{show(current-1);schedule();};document.querySelector('#next').onclick=()=>{show(current+1);schedule();};pause.onclick=()=>{playing=!playing;updatePause();};gallery.addEventListener('mouseenter',stop);gallery.addEventListener('mouseleave',schedule);gallery.addEventListener('focusin',stop);gallery.addEventListener('focusout',e=>{if(!gallery.contains(e.relatedTarget))schedule();});document.addEventListener('visibilitychange',schedule);reducedMotion.addEventListener('change',e=>{playing=!e.matches;updatePause();});updatePause();});
+"use strict";
+
+const gallery = document.querySelector(".gallery");
+
+if (gallery) {
+  const slides = gallery.querySelector(".slides");
+  const pauseButton = gallery.querySelector("#pause");
+  const previousButton = gallery.querySelector("#prev");
+  const nextButton = gallery.querySelector("#next");
+  const counter = gallery.querySelector("#counter");
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  const subjects = [
+    "Philosophy and Objectives",
+    "Faculty",
+    "Instruction",
+    "Laboratories",
+    "Employability",
+    "Research",
+    "Library",
+    "Student Services",
+    "Social Orientation and Community Involvement",
+    "Physical Plants and Activities",
+    "Organization and Administration",
+    "Fingerprint and DNA",
+    "Digital Forensics and Trace Evidence"
+  ];
+
+  const photos = subjects.map((subject, index) => {
+    const image = new Image(1200, 800);
+    const number = String(index + 1).padStart(3, "0");
+
+    image.alt = `Conceptual forensic science illustration: ${subject}`;
+    image.decoding = "async";
+    image.src = `i_forensic${number}.jpg`;
+
+    return image;
+  });
+
+  let current = 0;
+  let timer;
+  let playing = !reducedMotion.matches;
+  let hovered = false;
+
+  function stop() {
+    window.clearInterval(timer);
+  }
+
+  function schedule() {
+    stop();
+
+    const hasFocus = gallery.contains(document.activeElement);
+
+    if (playing && !document.hidden && !hovered && !hasFocus) {
+      timer = window.setInterval(() => {
+        show(current + 1);
+      }, 6500);
+    }
+  }
+
+  function show(index) {
+    const next = (index + photos.length) % photos.length;
+    const image = photos[next];
+
+    if (!image.complete || !image.naturalWidth) {
+      return;
+    }
+
+    current = next;
+    slides.replaceChildren(image);
+
+    counter.textContent =
+      `${String(current + 1).padStart(2, "0")} / ` +
+      String(photos.length).padStart(2, "0");
+  }
+
+  function updatePauseButton() {
+    pauseButton.textContent = playing ? "Ⅱ" : "▶";
+
+    pauseButton.setAttribute(
+      "aria-label",
+      playing ? "Pause slideshow" : "Play slideshow"
+    );
+
+    schedule();
+  }
+
+  counter.textContent = "01 / 13";
+
+  previousButton.addEventListener("click", () => {
+    show(current - 1);
+    schedule();
+  });
+
+  nextButton.addEventListener("click", () => {
+    show(current + 1);
+    schedule();
+  });
+
+  pauseButton.addEventListener("click", () => {
+    playing = !playing;
+    updatePauseButton();
+  });
+
+  gallery.addEventListener("mouseenter", () => {
+    hovered = true;
+    stop();
+  });
+
+  gallery.addEventListener("mouseleave", () => {
+    hovered = false;
+    schedule();
+  });
+
+  gallery.addEventListener("focusin", stop);
+
+  gallery.addEventListener("focusout", (event) => {
+    if (!gallery.contains(event.relatedTarget)) {
+      window.setTimeout(schedule, 0);
+    }
+  });
+
+  document.addEventListener("visibilitychange", schedule);
+
+  reducedMotion.addEventListener("change", (event) => {
+    playing = !event.matches;
+    updatePauseButton();
+  });
+
+  updatePauseButton();
+}
