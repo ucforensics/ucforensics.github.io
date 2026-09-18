@@ -1,6 +1,6 @@
 'use strict';
-// Place i_forensic001.jpg through i_forensic013.jpg beside index.html.
-const filenames = Array.from({length:13}, (_, i) => `i_forensic${String(i + 1).padStart(3, '0')}.jpg`);
+// Place i_forensic001.png through i_forensic013.png beside index.html.
+const filenames = Array.from({length:13}, (_, i) => `i_forensic${String(i + 1).padStart(3, '0')}.png`);
 const gallery = document.querySelector('.gallery');
 const slides = document.querySelector('.slides');
 const pause = document.querySelector('#pause');
