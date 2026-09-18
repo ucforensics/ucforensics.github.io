@@ -29,7 +29,7 @@ if (gallery) {
     "Digital Forensics and Trace Evidence"
   ];
 
-  const photos = subjects.map((subject, index) => {
+    const photos = subjects.map((subject, index) => {
     const image = new Image(1200, 800);
     const number = String(index + 1).padStart(3, "0");
 
