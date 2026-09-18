@@ -219,7 +219,7 @@ h1 span {
   aspect-ratio: 3 / 2;
   position: relative;
   overflow: hidden;
-  background: #071219;
+  background: #00ff00;
 }
 
 .slides img {
@@ -323,7 +323,7 @@ summary {
 .area:hover,
 .faculty:has(summary:hover),
 .faculty[open] {
-  background: #13252d;
+  background: #00ff00;
 }
 
 .area::before {
