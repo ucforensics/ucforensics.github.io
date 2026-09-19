@@ -3,23 +3,703 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080e14">
 
   <title>Bachelor of Forensic Science | University of the Cordilleras</title>
 
-  <meta
-    name="description"
-    content="Bachelor of Forensic Science, College of Criminal Justice Education, University of the Cordilleras."
-  >
+  <link rel="preload" as="image" href="i_forensic001.png">
 
-  <meta name="theme-color" content="#080f17">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080e14;
+      --surface: #101b24;
+      --surface-hover: #172b34;
+      --text: #f3f5f3;
+      --muted: #b3c1cc;
+      --gold: #deca9f;
+      --mint: #a0e5d5;
+      --border: #2b3d48;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Arial, Helvetica, sans-serif;
+    }
 
-  <link rel="preload" as="image" href="i_forensic001.jpg">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(
+          ellipse at 85% 0%,
+          rgba(42, 108, 101, .17),
+          transparent 42%
+        ),
+        var(--bg);
+      font: 1rem/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button,
+    summary {
+      touch-action: manipulation;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--mint);
+      outline-offset: 5px;
+    }
+
+    ::selection {
+      color: var(--bg);
+      background: var(--mint);
+    }
+
+    img,
+    svg {
+      display: block;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    .container {
+      width: min(1320px, calc(100% - 96px));
+      margin-inline: auto;
+    }
+
+    /* University header */
+
+    .masthead {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding-block: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .institution {
+      min-width: 0;
+    }
+
+    .institution a {
+      display: inline-block;
+      font: 1.65rem/1.25 var(--serif);
+      letter-spacing: -.025em;
+      transition: color .2s;
+    }
+
+    .institution a:hover {
+      color: var(--gold);
+    }
+
+    .institution span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .875rem;
+    }
+
+    .accreditation {
+      flex-shrink: 0;
+      padding-left: 26px;
+      border-left: 1px solid var(--border);
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: .18em;
+      text-align: right;
+    }
+
+    .accreditation span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .13em;
+    }
+
+    /* Program introduction */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      align-items: center;
+      gap: clamp(32px, 5vw, 76px);
+      padding-block: 54px;
+    }
+
+    .hero-copy {
+      position: relative;
+      padding-block: 24px;
+    }
+
+    .hero-copy::before {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 2px;
+      margin-bottom: 28px;
+      background: linear-gradient(90deg, var(--gold), var(--mint));
+    }
+
+    h1 {
+      margin-bottom: 32px;
+      font-family: var(--serif);
+      font-size: clamp(2.7rem, 4.9vw, 4.8rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -.055em;
+    }
+
+    h1 .degree {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--text);
+      font-size: .53em;
+      line-height: 1.3;
+      letter-spacing: -.025em;
+    }
+
+    h1 .discipline {
+      color: var(--mint);
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      color: #101820;
+      background: var(--gold);
+      font-size: .9375rem;
+      transition: background .2s, border-color .2s;
+    }
+
+    .button-link:hover {
+      border-color: #eee0bd;
+      background: #eee0bd;
+    }
+
+    .button-link.secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .button-link.secondary:hover {
+      border-color: var(--mint);
+      background: rgba(160, 229, 213, .06);
+    }
+
+    /* Slideshow */
+
+    .gallery {
+      position: relative;
+      min-width: 0;
+      padding: 9px;
+      border: 1px solid #41565c;
+      border-radius: 5px;
+      background: #101b23;
+      box-shadow: 0 25px 70px #0005;
+    }
+
+    .gallery::before,
+    .gallery::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      width: 35px;
+      height: 35px;
+      pointer-events: none;
+    }
+
+    .gallery::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+
+    .gallery::after {
+      right: -1px;
+      bottom: -1px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .slides {
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      background: #071017;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .gallery-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 5px 4px;
+    }
+
+    .counter {
+      padding-left: 5px;
+      color: var(--gold);
+      font: .8125rem/1.5 "Courier New", monospace;
+      letter-spacing: .13em;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .gallery-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .slide-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border: 1px solid #f0f6f6;
+      border-radius: 3px;
+      color: #08121b;
+      background: #e9f1f3;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+    }
+
+    .slide-button:hover {
+      border-color: var(--mint);
+      background: var(--mint);
+    }
+
+    .slide-button svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    /* Accreditation areas */
+
+    .areas {
+      padding-bottom: 56px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #736a54, var(--border));
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font: 400 2rem/1.25 var(--serif);
+      letter-spacing: -.035em;
+    }
+
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: 12px;
+    }
+
+    .area,
+    .faculty {
+      position: relative;
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: linear-gradient(120deg, #121f29, #0d1720);
+      transition: border-color .2s, background .2s;
+    }
+
+    .area,
+    .faculty summary {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      min-height: 112px;
+      padding: 22px;
+      font-size: .9375rem;
+      line-height: 1.5;
+    }
+
+    .area {
+      height: 100%;
+    }
+
+    .area::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      bottom: 22px;
+      left: -1px;
+      width: 2px;
+      background: var(--mint);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .area:hover,
+    .faculty:hover,
+    .faculty[open] {
+      border-color: #62868a;
+      background: var(--surface-hover);
+    }
+
+    .area:hover::before {
+      opacity: 1;
+    }
+
+    .number {
+      flex-shrink: 0;
+      min-width: 32px;
+      color: var(--gold);
+      font: 1.125rem/1.5 var(--serif);
+    }
+
+    .area-title {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .arrow,
+    .chevron {
+      flex-shrink: 0;
+      margin-left: auto;
+      color: var(--mint);
+      font-size: 1.25rem;
+      transition: transform .2s;
+    }
+
+    .area:hover .arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .faculty summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .faculty summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faculty summary::marker {
+      content: "";
+    }
+
+    .faculty[open] .chevron {
+      transform: rotate(45deg);
+    }
+
+    .faculty-links {
+      padding: 0 22px 12px;
+    }
+
+    .faculty-links a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-block: 15px;
+      border-top: 1px solid #36505a;
+      color: var(--muted);
+      font-size: .875rem;
+      line-height: 1.6;
+    }
+
+    .faculty-links a:hover {
+      color: var(--mint);
+    }
+
+    .other {
+      color: var(--gold);
+      border-color: #655d4a;
+      background: linear-gradient(120deg, #24251f, #131b1e);
+    }
+
+    .other .arrow {
+      color: var(--gold);
+    }
+
+    /* College information */
+
+    .college-information {
+      padding-bottom: 64px;
+    }
+
+    .information-section {
+      display: grid;
+      grid-template-columns: minmax(140px, .65fr) minmax(0, 2.35fr);
+      gap: clamp(28px, 5vw, 76px);
+      padding-block: 38px;
+      border-top: 1px solid var(--border);
+    }
+
+    .information-section h2 {
+      position: relative;
+      padding-top: 18px;
+      color: var(--gold);
+    }
+
+    .information-section h2::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .information-content {
+      min-width: 0;
+      max-width: 80ch;
+    }
+
+    .information-content p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .information-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .mission {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mission p {
+      color: var(--text);
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 1100px) {
+      .container {
+        width: calc(100% - 64px);
+      }
+
+      .hero {
+        gap: 32px;
+      }
+
+      .area,
+      .faculty summary {
+        padding: 19px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-block: 36px;
+      }
+
+      .hero-copy {
+        padding-block: 0;
+      }
+
+      .hero-copy::before {
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 7vw, 4.25rem);
+        margin-bottom: 24px;
+      }
+
+      .gallery {
+        width: 100%;
+        max-width: 720px;
+        justify-self: center;
+      }
+
+      .area-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .information-section {
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 40px);
+      }
+
+      .masthead {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding-block: 24px;
+      }
+
+      .institution a {
+        font-size: 1.5rem;
+      }
+
+      .accreditation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        padding-left: 0;
+        border-left: 0;
+        font-size: .875rem;
+        text-align: left;
+      }
+
+      .accreditation span {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 10vw, 3.8rem);
+      }
+
+      .gallery {
+        padding: 6px;
+      }
+
+      .gallery-controls {
+        gap: 10px;
+        padding-top: 10px;
+      }
+
+      .gallery-buttons {
+        gap: 6px;
+      }
+
+      .area-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .area,
+      .faculty summary {
+        min-height: 88px;
+        padding: 20px 18px;
+        font-size: 1rem;
+      }
+
+      .faculty-links {
+        padding-inline: 18px;
+      }
+
+      .areas {
+        padding-bottom: 36px;
+      }
+
+      .information-section {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-block: 30px;
+      }
+
+      .information-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .college-information {
+        padding-bottom: 40px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="masthead">
+  <header class="masthead container">
     <div class="institution">
       <a
         href="https://www.uc-bcf.edu.ph/"
@@ -28,7 +708,6 @@
       >
         University of the Cordilleras
       </a>
-
       <span>College of Criminal Justice Education</span>
     </div>
 
@@ -38,14 +717,30 @@
     </div>
   </header>
 
-  <main id="main-content">
-
-    <!-- Program and slideshow -->
-    <section class="program" aria-labelledby="program-title">
-      <div class="program-heading">
+  <main class="container">
+    <section class="hero" aria-labelledby="program-title">
+      <div class="hero-copy">
         <h1 id="program-title">
-          Bachelor of <span>Forensic Science</span>
+          <span class="degree">Bachelor of</span>
+          <span class="discipline">Forensic Science</span>
         </h1>
+
+        <div class="hero-links">
+          <a
+            class="button-link"
+            href="https://drive.google.com/drive/folders/1-vpyh6zsqIkl7HnbLeu8c6TAStosmC72"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Files
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="button-link secondary" href="#areas">
+            Areas
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
       </div>
 
       <div
@@ -56,7 +751,7 @@
       >
         <div class="slides" id="slideshow">
           <img
-            src="i_forensic001.jpg"
+            src="i_forensic001.png"
             width="1200"
             height="800"
             alt=""
@@ -66,19 +761,17 @@
         </div>
 
         <div class="gallery-controls">
-          <span id="counter" aria-live="off">01 / 13</span>
+          <span class="counter" id="counter">01 / 13</span>
 
           <div class="gallery-buttons">
             <button
-              type="button"
               class="slide-button"
               id="prev"
+              type="button"
               aria-label="Previous image"
               aria-controls="slideshow"
             >
               <svg
-                width="24"
-                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -86,43 +779,32 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 aria-hidden="true"
-                focusable="false"
               >
-                <path d="M19 12H5"></path>
-                <path d="m12 19-7-7 7-7"></path>
+                <path d="M19 12H5m7 7-7-7 7-7"></path>
               </svg>
             </button>
 
             <button
-              type="button"
               class="slide-button"
               id="pause"
+              type="button"
               aria-label="Pause slideshow"
               aria-controls="slideshow"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-                focusable="false"
-              >
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <rect x="6" y="5" width="4" height="14" rx="1"></rect>
                 <rect x="14" y="5" width="4" height="14" rx="1"></rect>
               </svg>
             </button>
 
             <button
-              type="button"
               class="slide-button"
               id="next"
+              type="button"
               aria-label="Next image"
               aria-controls="slideshow"
             >
               <svg
-                width="24"
-                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -130,10 +812,8 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 aria-hidden="true"
-                focusable="false"
               >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
+                <path d="M5 12h14m-7-7 7 7-7 7"></path>
               </svg>
             </button>
           </div>
@@ -141,54 +821,18 @@
       </div>
     </section>
 
-    <!-- Accreditation areas and master folder -->
-    <section class="areas" aria-labelledby="areas-heading">
+    <section class="areas" id="areas" aria-labelledby="areas-heading">
       <div class="section-heading">
         <h2 id="areas-heading">Areas</h2>
-
-        <a
-          class="master-folder"
-          href="https://drive.google.com/drive/folders/1-vpyh6zsqIkl7HnbLeu8c6TAStosmC72"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <path
-              d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"
-            ></path>
-          </svg>
-
-          <span>Files</span>
-          <span aria-hidden="true">↗</span>
-        </a>
       </div>
 
       <div class="area-grid">
-
-        <!-- I -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1kKwGcC-5B6REB4LoaYxjLMPZZx3E_pHQ"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1kKwGcC-5B6REB4LoaYxjLMPZZx3E_pHQ" target="_blank" rel="noopener noreferrer">
           <span class="number">I.</span>
           <span class="area-title">Philosophy and Objectives</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- II -->
         <details class="faculty">
           <summary>
             <span class="number">II.</span>
@@ -197,202 +841,107 @@
           </summary>
 
           <div class="faculty-links">
-            <a
-              href="https://drive.google.com/drive/folders/1-ChPZwt885qvB_VY8wixwsfvRQR7hq9i"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1-ChPZwt885qvB_VY8wixwsfvRQR7hq9i" target="_blank" rel="noopener noreferrer">
               <span>Academic Qualification</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/142GKWBX4dXC4EEKZv7KN4w794cWxQSB2"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/142GKWBX4dXC4EEKZv7KN4w794cWxQSB2" target="_blank" rel="noopener noreferrer">
               <span>Community Involvement</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/1fKE0SPPiIuWjfOX_pwrC0cEIEkfUOeup"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1fKE0SPPiIuWjfOX_pwrC0cEIEkfUOeup" target="_blank" rel="noopener noreferrer">
               <span>Desired Outcomes and Suggested Evidence</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/1Ay5u_84ukCKyAc4fXmE4P5adCcdtU0Nr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1Ay5u_84ukCKyAc4fXmE4P5adCcdtU0Nr" target="_blank" rel="noopener noreferrer">
               <span>Faculty Development</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/1HWo1hkFIbdyMplKR_yvTh4dPS_vNahPO"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1HWo1hkFIbdyMplKR_yvTh4dPS_vNahPO" target="_blank" rel="noopener noreferrer">
               <span>Professional Performance</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/1rVAJhBq_7uGkY7lmEnPj6itxrOZyBvgb"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1rVAJhBq_7uGkY7lmEnPj6itxrOZyBvgb" target="_blank" rel="noopener noreferrer">
               <span>Rank, Tenure, Remuneration, and Fringe Benefits</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="https://drive.google.com/drive/folders/1VWUMxnRwf2x5TxlAGYPoNlBjO5CsrQZ_"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://drive.google.com/drive/folders/1VWUMxnRwf2x5TxlAGYPoNlBjO5CsrQZ_" target="_blank" rel="noopener noreferrer">
               <span>Teaching Assignment</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </a>
           </div>
         </details>
 
-        <!-- III -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1QXVIItSgYWip2CFm4aCSuvy_9nXcozSk"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1QXVIItSgYWip2CFm4aCSuvy_9nXcozSk" target="_blank" rel="noopener noreferrer">
           <span class="number">III.</span>
           <span class="area-title">Instruction</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- IV -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1NdVzhNR0BWTgoQgTdDupgI4bKI90FB-G"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1NdVzhNR0BWTgoQgTdDupgI4bKI90FB-G" target="_blank" rel="noopener noreferrer">
           <span class="number">IV.</span>
           <span class="area-title">Laboratories</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- V -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1Xl7xSFQWt2CUpMivOa_8-OOM4C769ueN"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1Xl7xSFQWt2CUpMivOa_8-OOM4C769ueN" target="_blank" rel="noopener noreferrer">
           <span class="number">V.</span>
           <span class="area-title">Employability</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- VI -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1LlXc7vHFv22FuLsHIOUkj178nd2TCDqL"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1LlXc7vHFv22FuLsHIOUkj178nd2TCDqL" target="_blank" rel="noopener noreferrer">
           <span class="number">VI.</span>
           <span class="area-title">Research</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- VII -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/11i-4QNZPXgaYv-f49md17dU8opSpyFtD"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/11i-4QNZPXgaYv-f49md17dU8opSpyFtD" target="_blank" rel="noopener noreferrer">
           <span class="number">VII.</span>
           <span class="area-title">Library</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- VIII -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1ejZ1vILky-HjHn4Wd0EMZ13J3h1T41Bx"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1ejZ1vILky-HjHn4Wd0EMZ13J3h1T41Bx" target="_blank" rel="noopener noreferrer">
           <span class="number">VIII.</span>
           <span class="area-title">Student Services</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- IX -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1eTS3R-bgia_B653Fj993m6rtpLHycY2J"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1eTS3R-bgia_B653Fj993m6rtpLHycY2J" target="_blank" rel="noopener noreferrer">
           <span class="number">IX.</span>
-          <span class="area-title">
-            Social Orientation and Community Involvement
-          </span>
+          <span class="area-title">Social Orientation and Community Involvement</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- X -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1tkxky1F37wzQUY0rflVGexFcL3TP04ZH"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1tkxky1F37wzQUY0rflVGexFcL3TP04ZH" target="_blank" rel="noopener noreferrer">
           <span class="number">X.</span>
           <span class="area-title">Physical Plants and Activities</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- XI -->
-        <a
-          class="area"
-          href="https://drive.google.com/drive/folders/1xD9hyUtJIA7eDljj1-EQPjvwqZBM1cv-"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area" href="https://drive.google.com/drive/folders/1xD9hyUtJIA7eDljj1-EQPjvwqZBM1cv-" target="_blank" rel="noopener noreferrer">
           <span class="number">XI.</span>
           <span class="area-title">Organization and Administration</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
 
-        <!-- Other Requirements -->
-        <a
-          class="area other"
-          href="https://drive.google.com/drive/folders/1oDBEq_L1-xySw5nE80YYy9xwEB2ez1EG"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="area other" href="https://drive.google.com/drive/folders/1oDBEq_L1-xySw5nE80YYy9xwEB2ez1EG" target="_blank" rel="noopener noreferrer">
           <span class="area-title">Other Requirements</span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
-
       </div>
     </section>
 
-    <!-- College information -->
     <div class="college-information">
-
-      <section class="information-section about" aria-labelledby="about-heading">
-        <div class="information-heading">
-          <h2 id="about-heading">About</h2>
-        </div>
+      <section class="information-section" aria-labelledby="about-heading">
+        <h2 id="about-heading">About</h2>
 
         <div class="information-content">
           <p>The College of Criminal Justice Education, adhering to the UC Philosophy, recognizes its vital role in enhancing relevant and responsive education in the fields of Criminology, Forensic Science, and Industrial Security Management.</p>
@@ -401,10 +950,8 @@
         </div>
       </section>
 
-      <section class="information-section vision" aria-labelledby="vision-heading">
-        <div class="information-heading">
-          <h2 id="vision-heading">Vision</h2>
-        </div>
+      <section class="information-section" aria-labelledby="vision-heading">
+        <h2 id="vision-heading">Vision</h2>
 
         <div class="information-content">
           <p>The College of Criminal Justice Education, adhering to the UC Philosophy, recognizes its vital role in enhancing relevant and responsive education in the field of Criminal Justice. Into the 21st century, the College of Criminal Justice Education as a center of excellence envisions itself as an institution providing quality instruction and effective training for those who are deserving; to be recognized not only in the Philippines, but in the entire Asia as a producer of the finest graduates who can ably adapt with modernization and capable of applying latest technology and modern techniques in Law, Law Enforcement Administration, Criminal Sociology, Crime Detection and Investigation, Forensic Science and Correctional Administration.</p>
@@ -412,16 +959,200 @@
       </section>
 
       <section class="information-section mission" aria-labelledby="mission-heading">
-        <div class="information-heading">
-          <h2 id="mission-heading">Mission</h2>
-        </div>
+        <h2 id="mission-heading">Mission</h2>
 
         <div class="information-content">
           <p>The College of Criminal Justice Education shall produce graduates who are spiritually, morally, mentally, physically, and emotionally prepared to enter the realms of Law, Law Enforcement Administration, Criminal Sociology, Crime Detection and Investigation, Forensic Science and Correctional Administration professions.</p>
         </div>
       </section>
-
     </div>
   </main>
+
+  <script>
+    "use strict";
+
+    (() => {
+      const gallery = document.querySelector(".gallery");
+      const slides = document.getElementById("slideshow");
+      const counter = document.getElementById("counter");
+      const previous = document.getElementById("prev");
+      const next = document.getElementById("next");
+      const pause = document.getElementById("pause");
+
+      const total = 13;
+      const interval = 6500;
+      const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+      const cache = new Map();
+
+      let current = 0;
+      let timer;
+      let playing = !reducedMotion.matches;
+      let hovered = false;
+      let request = 0;
+
+      const pauseIcon = `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+          <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+        </svg>
+      `;
+
+      const playIcon = `
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      `;
+
+      function stop() {
+        clearTimeout(timer);
+      }
+
+      function schedule() {
+        stop();
+
+        if (
+          playing &&
+          !hovered &&
+          !document.hidden &&
+          !gallery.contains(document.activeElement)
+        ) {
+          timer = setTimeout(() => navigate(1), interval);
+        }
+      }
+
+      function updateButton() {
+        pause.innerHTML = playing ? pauseIcon : playIcon;
+        pause.setAttribute(
+          "aria-label",
+          playing ? "Pause slideshow" : "Play slideshow"
+        );
+      }
+
+      function loadImage(index) {
+        if (cache.has(index)) return cache.get(index);
+
+        const promise = new Promise(resolve => {
+          const image = new Image(1200, 800);
+
+          image.alt = "";
+          image.draggable = false;
+          image.decoding = "async";
+
+          image.onload = () => resolve(image);
+          image.onerror = () => resolve(null);
+
+          image.src =
+            `i_forensic${String(index + 1).padStart(3, "0")}.png`;
+        });
+
+        cache.set(index, promise);
+        return promise;
+      }
+
+      async function navigate(direction) {
+        stop();
+
+        const token = ++request;
+        const start = current;
+
+        for (let step = 1; step < total; step++) {
+          const index = (start + direction * step + total) % total;
+          const image = await loadImage(index);
+
+          if (token !== request) return;
+          if (!image) continue;
+
+          slides.replaceChildren(image);
+          current = index;
+
+          counter.textContent =
+            `${String(current + 1).padStart(2, "0")} / ${total}`;
+
+          void loadImage((current + 1) % total);
+          schedule();
+          return;
+        }
+
+        schedule();
+      }
+
+      previous.addEventListener("click", () => navigate(-1));
+      next.addEventListener("click", () => navigate(1));
+
+      pause.addEventListener("click", () => {
+        playing = !playing;
+        updateButton();
+        schedule();
+      });
+
+      gallery.addEventListener("pointerenter", event => {
+        if (event.pointerType !== "mouse") return;
+        hovered = true;
+        stop();
+      });
+
+      gallery.addEventListener("pointerleave", event => {
+        if (event.pointerType !== "mouse") return;
+        hovered = false;
+        schedule();
+      });
+
+      gallery.addEventListener("focusin", stop);
+
+      gallery.addEventListener("focusout", event => {
+        if (!gallery.contains(event.relatedTarget)) {
+          setTimeout(schedule, 0);
+        }
+      });
+
+      gallery.addEventListener("keydown", event => {
+        if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          void navigate(-1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          void navigate(1);
+        }
+      });
+
+      document.addEventListener("visibilitychange", schedule);
+
+      reducedMotion.addEventListener("change", event => {
+        playing = !event.matches;
+        updateButton();
+        schedule();
+      });
+
+      // Preserve the first image already rendered by the HTML.
+      const firstImage = slides.querySelector("img");
+      firstImage.draggable = false;
+
+      function firstReady() {
+        cache.set(0, Promise.resolve(firstImage));
+        schedule();
+      }
+
+      function firstFailed() {
+        cache.set(0, Promise.resolve(null));
+        if (current === 0) void navigate(1);
+      }
+
+      if (firstImage.complete) {
+        if (firstImage.naturalWidth) firstReady();
+        else firstFailed();
+      } else {
+        firstImage.addEventListener("load", firstReady, { once: true });
+        firstImage.addEventListener("error", firstFailed, { once: true });
+      }
+
+      for (let index = 1; index < total; index++) {
+        void loadImage(index);
+      }
+
+      updateButton();
+    })();
+  </script>
 </body>
 </html>
