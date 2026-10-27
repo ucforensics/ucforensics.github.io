@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Organized Digital Forensics II laboratory activities and guide questions.">
+<meta name="robots" content="noindex, noarchive">
+<title>Digital Forensics II | Laboratory Activities</title>
+<style>
+:root{--ink:#e9eef6;--muted:#9aa9bc;--bg:#0b1118;--panel:#111b26;--panel2:#152333;--line:#243648;--accent:#8ce0c2;--accent2:#b9a8ff;--max:1180px;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#1b3140 0,transparent 38%),var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}a{color:inherit}button,input{font:inherit}.shell{max-width:var(--max);margin:auto;padding:28px 24px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:56px}.brand{display:flex;align-items:center;gap:11px;font-weight:750;letter-spacing:.03em}.brand-mark{width:36px;height:36px;display:grid;place-items:center;border:1px solid #3f6d67;border-radius:11px;color:var(--accent);font-size:13px}.top-label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.14em}.hero{max-width:800px;margin:0 0 46px}.eyebrow{color:var(--accent);font-size:12px;font-weight:750;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(38px,7vw,70px);line-height:1.02;letter-spacing:-.055em;margin:14px 0 18px}.hero p{font-size:18px;color:#b2c0cf;max-width:700px;margin:0}.hero-stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.stat{border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:#c8d3df;font-size:13px;background:#101a23}.stat strong{color:var(--accent);margin-right:5px}.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:36px;align-items:start}.sidebar{position:sticky;top:20px}.side-title{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:0 0 12px}.topic-nav{display:grid;gap:6px}.topic-link{text-decoration:none;padding:11px 12px;border-radius:12px;border:1px solid transparent;color:#c7d2df;display:grid}.topic-link:hover,.topic-link.active{background:#152532;border-color:#2c4b52;color:#fff}.topic-link small{font-size:11px;color:var(--muted);margin-top:1px}.controls{display:flex;gap:9px;margin-top:20px}.text-button{color:var(--accent);border:1px solid #31534f;background:transparent;border-radius:9px;padding:8px 11px;font-size:12px;cursor:pointer}.text-button:hover{background:#19302d}.search-wrap{margin:0 0 27px;position:relative}.search-wrap input{width:100%;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:13px 15px 13px 43px;border-radius:12px;outline:none}.search-wrap input:focus{border-color:#5bb29a;box-shadow:0 0 0 3px #8ce0c222}.search-icon{position:absolute;left:15px;top:10px;color:var(--muted);font-size:18px}.topic-group{margin-bottom:40px}.group-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:0 0 16px;padding-bottom:13px;border-bottom:1px solid var(--line)}.group-heading h2{font-size:25px;letter-spacing:-.03em;margin:4px 0}.group-heading p{margin:0;color:var(--muted);font-size:14px}.activity-list{display:grid;gap:11px}.activity{border:1px solid var(--line);background:linear-gradient(145deg,#121e29,#101720);border-radius:15px;overflow:hidden;transition:border-color .15s,transform .15s}.activity:hover{border-color:#3b5961;transform:translateY(-1px)}.activity[hidden],.topic-group[hidden]{display:none}.activity-details>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 19px}.activity-details>summary::-webkit-details-marker{display:none}.activity-number{flex:0 0 auto;color:var(--accent);background:#18302d;border:1px solid #2c514a;border-radius:7px;padding:4px 7px;font-size:10px;font-weight:800;letter-spacing:.08em}.activity-title{font-weight:670;flex:1}.chevron{color:var(--muted);font-size:21px;transition:transform .2s}.activity-details[open] .chevron{transform:rotate(180deg)}.activity-body{padding:0 20px 20px;border-top:1px solid #1d2b38}.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:17px 0}.info-block,.content-block{background:#0c141c;border:1px solid #1e2c39;border-radius:11px;padding:14px 15px}.info-block h3,.content-block h3{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent2);margin:0 0 8px}.info-block p{margin:0;color:#c6d0db;font-size:14px}.content-block{margin-top:12px}.source-text{white-space:pre-wrap;color:#d1dae4;font-size:13px;line-height:1.75;overflow-wrap:anywhere}.source-note{font-size:11px;color:#8293a5;margin:13px 2px 0}.empty-state{display:none;color:var(--muted);padding:25px;border:1px dashed var(--line);border-radius:12px;text-align:center}.notice{margin-top:32px;color:#8494a5;font-size:12px;border-top:1px solid var(--line);padding-top:16px}.notice strong{color:#b8c5d2}@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:static}.topic-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar{margin-bottom:40px}.topic-nav .topic-link{font-size:13px}}@media(max-width:540px){.shell{padding:18px 14px 45px}.topic-nav{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr}.group-heading{align-items:start}.group-heading .text-button{margin-top:22px}.activity-details>summary{padding:14px}.activity-body{padding:0 13px 15px}.top-label{display:none}}
+@media print{body *{visibility:hidden!important}body:after{content:"This course resource is available in the interactive webpage.";visibility:visible;position:fixed;inset:20px;color:#222;font:16px sans-serif}}
+</style></head>
+<body>
+<div class="shell">
+<header class="topbar"><div class="brand"><span class="brand-mark">DF2</span><span>LAB MANUAL</span></div><span class="top-label">Digital Forensics II · Laboratory collection</span></header>
+<section class="hero"><span class="eyebrow">20 laboratory activities</span><h1>Digital evidence,<br>from first look to testimony.</h1><p>A structured course companion for the full laboratory sequence. Browse by learning phase or search for a tool, skill, or activity.</p><div class="hero-stats"><span class="stat"><strong>06</strong>learning phases</span><span class="stat"><strong>20</strong>worksheets</span><span class="stat"><strong>01</strong>course collection</span></div></section>
+<div class="layout"><aside class="sidebar"><p class="side-title">Learning sequence</p><nav class="topic-nav"><a class="topic-link" href="#group-0" data-filter="0"><span>Foundations and readiness</span><small>Labs 01–05</small></a><a class="topic-link" href="#group-1" data-filter="1"><span>Evidence isolation and documentation</span><small>Labs 06–07</small></a><a class="topic-link" href="#group-2" data-filter="2"><span>Integrity, imaging, and file analysis</span><small>Labs 08–11</small></a><a class="topic-link" href="#group-3" data-filter="3"><span>Communication and concealment</span><small>Labs 12–14</small></a><a class="topic-link" href="#group-4" data-filter="4"><span>Examination and interpretation</span><small>Labs 15–18</small></a><a class="topic-link" href="#group-5" data-filter="5"><span>Reporting and challenge</span><small>Labs 19–20</small></a></nav><div class="controls"><button class="text-button" id="expandAll" type="button">Expand all</button><button class="text-button" id="collapseAll" type="button">Collapse all</button></div></aside>
+<main><label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input type="search" id="search" placeholder="Search activities, tools, or topics…" autocomplete="off" aria-label="Search laboratory activities"></label>
+<div id="groups"><section class="topic-group" id="group-0" data-category="0"><div class="group-heading"><div><span class="eyebrow">LABS 01–05</span><h2>Foundations and readiness</h2><p>identity, hardware, system profiling, storage preparation, and network latency</p></div><button class="text-button expand-group" type="button" data-group="0">Open group</button></div><div class="activity-list"><article class="activity" data-category="0" data-search="digital identity and instruction fidelity to appreciate how digital identifiers (qr codes) support classroom workflows and how strict formatting matters in computer- based systems. internet-connected device, lo card, access to a printer, qr code scanner app, scissors, sticker paper" id="lab-01">
+      <details class="activity-details" open>
+        <summary><span class="activity-number">LAB 01</span><span class="activity-title">Digital Identity and Instruction Fidelity</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To appreciate how digital identifiers (QR codes) support classroom workflows and how strict formatting matters in computer- based systems.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Internet-connected device, Lo Card, Access to a printer, QR code scanner app, Scissors, Sticker paper</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Prepare your Lo Card and sticker paper.
+2. Using an internet-connected device, go to the QR code generator website: https://www.qrcode-monkey.com
+3. Select **Text** as the QR code content type.
+4. Set the quality to **High Quality** (move the quality slider to high).
+5. In the text field, encode your name using this exact format: **LastnameFirstnameM**.
+a. Do not use spaces.
+b. Use proper capitalization: the first letter of each name segment must be uppercase.
+c. If you have two or more given names, capitalize the first letter of each given name segment.
+d. Examples: * GatesWilliamH OR * DelaCruzMariaMercedesQ
+6. Double-check your entry for accuracy. Remember that in computer systems, even a one-character error can cause failure (e.g., syntax errors and mismatched identifiers).
+7. Click **Create QR Code**
+8. Download the generated QR code as a **PNG** file.
+9. Rename the downloaded file to match your encoded name exactly (e.g., **GatesWilliamH.png**).
+10. Upload the renamed PNG file to the course repository using the platform or instructions provided by your instructor.
+11. Resize the QR code image to **5.08 cm × 5.08 cm** (2 in × 2 in) before printing. Ensure the QR code remains clear and not blurred or stretched.
+12. Print the resized QR code on sticker paper.
+13. Cut the printed QR code neatly (if needed), then stick it onto your Lo Card.
+14. Bring your QR-coded Lo Card to every class for the entire term. When you recite and answer correctly, your instructor may scan your QR code to record participation or points.
+15. Install a QR code scanner app on your phone. Verify it works by scanning your printed QR code. Keep the scanner app available for future class instructions.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why is strict name formatting (capitalization and no spaces) important when generating and using digital identifiers like QR codes?
+2. What classroom or laboratory processes can be improved by using QR-coded recitation cards, and what risks must be managed (e.g., misidentification or privacy concerns)?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 01. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="0" data-search="computer component trends and digital forensics readiness to explain how the proliferation of data centers contributes to rising computer component prices and relate these trends to digital forensics capability, procurement, and laboratory readiness. a4 paper, computer (pc)" id="lab-02">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 02</span><span class="activity-title">Computer Component Trends and Digital Forensics Readiness</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To explain how the proliferation of data centers contributes to rising computer component prices and relate these trends to digital forensics capability, procurement, and laboratory readiness.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>A4 paper, Computer (PC)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Form your assigned group and confirm the specific computer component assigned to your group (e.g., CPU, Motherboard, Storage).
+2. Divide roles within the group to ensure coverage of product types or generations. For example, if your assigned component is RAM, assign members to focus on **DDR5**, **DDR4**, and **DDR3**.
+3. For each assigned subtype, research at least one specific product and record the brand, model, type/generation, key specifications, and current market price. Use reputable sources such as manufacturer specifications and established retailers.
+4. Create a clean A4 “computer store advertisement” page as if you are selling the assigned component.
+5. Insert a table with **three (3) columns** and at least **three (3) rows** (one row per product/subtype). Label the columns exactly as follows:
+a. **Image**
+b. **Specs**
+c. **Remarks**
+6. Populate the table for each product:
+a. **Image:** Insert a clear product image.
+b. **Specs:** List the key technical specifications in concise, scannable form.
+c. **Remarks:** Include the price and at least two advantages of the product (e.g., speed, reliability, warranty, compatibility, power efficiency).
+7. Add a short banner headline at the top of the page to make the advertisement coherent and professional (e.g., “High-Performance RAM for DFIR Workstations”).
+8. Export your ad page as a **PDF** and use the **same filename format required for the other laboratory submissions**.
+10. Submit by uploading the PDF file to the course repository using the platform or instructions provided by your instructor.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. How can rising component prices affect the acquisition and maintenance of digital forensics workstations and laboratory capability?
+2. Which specifications of your assigned component most directly affect digital forensic tasks, and why?
+3. What practical procurement strategy would you recommend for a digital forensics lab facing budget constraints based on your research?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 02. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="0" data-search="system specification profiling using dxdiag to use dxdiag to identify and document the specifications of a pc for troubleshooting, performance planning, and digital forensics workstation readiness. pc (windows)" id="lab-03">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 03</span><span class="activity-title">System Specification Profiling Using DxDiag</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To use DxDiag to identify and document the specifications of a PC for troubleshooting, performance planning, and digital forensics workstation readiness.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC (Windows)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Turn on the PC and log in to Windows using an authorized account.
+2. Open the Run dialog by pressing **Windows + R**.
+3. Type **dxdiag** and press **Enter**.
+4. If prompted to check for digitally signed drivers, click **Yes**.
+5. In the **System** tab, record the following information:
+a. Operating System
+b. System Manufacturer and System Model
+c. Processor
+d. Memory (RAM)
+e. DirectX Version
+6. Go to the **Display** tab and record the following (you may copy the exact numbers and values as shown):
+a. Name of the graphics device (GPU)
+b. Approximate total memory (if shown)
+c. Driver version and date (if shown)
+7. If there are multiple display devices listed (e.g., Display 1 and Display 2), repeat Step 6 for each device.
+8. Save the DxDiag report:
+a. Click **Save All Information…**
+b. Choose a save location.
+c. Name the file using the same filename format required for your other laboratory submissions.
+9. Open the saved text file and confirm that all recorded specifications are complete and readable.
+10. Close DxDiag and ensure your documentation is ready for submission or reference.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why can a computer appear to have more than one “CPU” in system information tools? In your answer, you may copy and cite the specific numbers shown on your PC (e.g., core count, logical processor count) to support your explanation.
+2. What are CPU cores and threads, and how do they affect performance? In your answer, you may copy the exact core/thread numbers reported by your PC.
+3. Based on your DxDiag results, which specification is most likely to limit performance in digital forensics tasks (e.g., imaging, hashing, indexing), and why? You may copy the relevant numbers directly from DxDiag.</div></section>
+          <p class="source-note">Adapted from Worksheet No. 03. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="0" data-search="flash drive formatting and file system selection to format a flash drive and select an appropriate file system format based on intended use and file size requirements. flash drive, laboratory pc" id="lab-04">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 04</span><span class="activity-title">Flash Drive Formatting and File System Selection</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To format a flash drive and select an appropriate file system format based on intended use and file size requirements.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, Laboratory PC</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into an available USB port on the PC.
+2. Back up any important files from the flash drive. Formatting will permanently erase all existing data.
+3. Open **File Explorer**, then locate the flash drive under **This PC**. Confirm the correct drive letter to avoid formatting the wrong storage device.
+4. Check the current file system format:
+a. Right-click the flash drive.
+b. Click **Properties**.
+c. Note the **File system** (e.g., FAT32, exFAT, NTFS) and the **Capacity**.
+5. Begin formatting the flash drive:
+a. Right-click the flash drive and select **Format…**
+b. Choose a **File system** based on your intended use:
+• FAT32: Highly compatible, but limited to a 4 GB maximum file size.
+• exFAT: Supports large files and works well across modern operating systems.
+• NTFS: Supports large files and advanced features (permissions and journaling), best for Windows-focused use.
+c. Enter a clear **Volume label** (e.g., LAB_USB).
+d. Check **Quick Format** for routine classroom formatting unless otherwise instructed.
+e. Click **Start**, then confirm the warning message.
+6. Verify the formatting result:
+a. After formatting finishes, open **Properties** again.
+b. Confirm that the **File system** matches your selected format.
+7. Create a basic folder structure for organization (example):
+a. Case Folder
+b. Laboratory Activities
+8. Safely eject the flash drive:
+a. Right-click the flash drive in File Explorer and select **Eject**, or use **Safely Remove Hardware**.
+b. Remove the flash drive only after the system indicates it is safe.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is the most important limitation of FAT32, and how does it affect storing large files such as disk images or video evidence?
+2. In what situations would you choose exFAT over NTFS, and why?
+3. Why is it important to verify the correct drive letter before formatting, especially in a digital forensics environment?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 04. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="0" data-search="network latency measurement and online performance simulation to measure network latency using the ping command and relate latency to real-time information transmission during an online multiplayer game. pc with internet connection, command prompt, web browser" id="lab-05">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 05</span><span class="activity-title">Network Latency Measurement and Online Performance Simulation</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To measure network latency using the ping command and relate latency to real-time information transmission during an online multiplayer game.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC with internet connection, Command Prompt, Web browser</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Connect the PC to the internet and ensure the connection is stable.
+2. Open **Command Prompt**:
+a. Press **Windows + R** to open Run.
+b. Type **cmd** and press **Enter**.
+3. In Command Prompt, type the following command and press **Enter**: `ping kour.io`
+4. Observe the ping results and record the following values (you may copy the exact numbers shown):
+a. Minimum time (min)
+b. Maximum time (max)
+c. Average time (avg)
+d. Packet loss (if any)
+5. Open a web browser.
+6. Click the address bar, type **kour.io**, and press **Enter**.
+7. Join the game and play against your assigned group as instructed.
+8. While playing, observe any noticeable delays, lag spikes, freezing, or “rubber-banding” (sudden jumps in player position).
+9. After the match, relate your gameplay observations to the ping results you recorded.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is latency, and how is it represented in the ping results (min, max, and average time)? You may copy the exact numbers from your ping output.
+2. How does high latency affect information sent and received during real-time online gameplay (e.g., movement, shooting, hit registration, and synchronization)?
+3. If your ping results show high variability (large difference between min and max), what does this suggest about network stability, and how might it affect gameplay?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 05. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section><section class="topic-group" id="group-1" data-category="1"><div class="group-heading"><div><span class="eyebrow">LABS 06–07</span><h2>Evidence isolation and documentation</h2><p>signal shielding and dead-box documentation</p></div><button class="text-button expand-group" type="button" data-group="1">Open group</button></div><div class="activity-list"><article class="activity" data-category="1" data-search="signal shielding simulation to design and build a simple faraday cage and evaluate its effectiveness in reducing radio-frequency signals to illustrate basic evidence isolation concepts in digital forensics. aluminum foil, box, (conductive) tape, glue, marker, ruler, scissors, smartphone" id="lab-06">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 06</span><span class="activity-title">Signal Shielding Simulation</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To design and build a simple Faraday cage and evaluate its effectiveness in reducing radio-frequency signals to illustrate basic evidence isolation concepts in digital forensics.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Aluminum foil, Box, (conductive) Tape, Glue, Marker, Ruler, Scissors, Smartphone</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Select a box that can fully enclose a smartphone and can be closed securely (with a lid or flap).
+2. Inspect box for openings, seams, or gaps where signals can leak
+3. Cut aluminum foil pieces large enough to line the inside surfaces of the box (bottom, sides, and lid).
+4. Apply glue to the interior surfaces of the box, then line the inside with aluminum foil.
+5. Ensure foil pieces overlap at edges and corners so that the lining forms a continuous conductive layer. Do not leave exposed gaps.
+6. If available, use conductive tape to secure foil overlaps and reinforce seams (especially around corners and the lid edges).
+7. Line the inside of the lid (or flap) with aluminum foil and ensure it overlaps with the foil lining on the box body when closed.
+8. Build a secure closure:
+a. Add a foil “lip” or overlap area around the rim of the box so that, when closed, foil touches foil.
+b. Reinforce the closure with conductive tape if available.
+9. Allow glue to set so the foil does not peel off during testing.
+10. Testing phase (simulation):
+a. Choose one group member’s smartphone for the test and ensure everyone has the phone number.
+b. Keep the phone powered on and connected to the network (do not enable airplane mode).
+c. Place the smartphone inside the Faraday cage and close the lid.
+d. Other groups will attempt to call the phone number.
+11. Record the result of the call attempts (e.g., rings normally, delayed ring, goes to voicemail, call fails) and note any differences across repeated trials.
+12. Improve and re-test if needed by sealing gaps, increasing foil overlap, or reinforcing the lid seam, then repeat Step 10 and compare results.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What design features most affected your Faraday cage performance (e.g., gaps, seams, lid overlap, foil continuity), and why?
+2. Why does a Faraday cage help in certain digital forensics situations, particularly in preventing remote access, wiping, or incoming network activity?
+3. If the phone still received calls, what specific modifications would you implement to improve shielding, and what is your technical basis for each change?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 06. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="1" data-search="dead-box digital forensics documentation simulation to document and apply matched markings to device ports and their corresponding cables in a dead-box forensics simulation while maintaining proper evidence handling and documentation practices. demo units and peripherals, gloves, marker, masking tape, ruler, smartphone with camera" id="lab-07">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 07</span><span class="activity-title">Dead-Box Digital Forensics Documentation Simulation</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To document and apply matched markings to device ports and their corresponding cables in a dead-box forensics simulation while maintaining proper evidence handling and documentation practices.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Demo units and peripherals, Gloves, Marker, Masking tape, Ruler, Smartphone with camera</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Treat the activity area as a simulated crime scene for a dead-box forensics scenario. Avoid unnecessary contact with items until documentation begins.
+2. Wear gloves before handling any demo units, ports, or cables to reduce contamination and preserve item condition. Replace gloves if they become torn, soiled, or after handling unrelated items.
+3. Conduct an initial visual survey and identify the devices and connected peripherals that will be processed. Do not unplug, plug, or power on any device unless instructed.
+4. Photograph the setup before marking:
+a. Take wide-angle photos showing the full device and all connected cables.
+b. Take mid-range photos showing cable routing and where cables connect to the device.
+c. Take close-up photos of each connected port and the cable connector seated in that port.
+5. Assign an evidence identifier to each device (e.g., BFS-001, BFS- 002) and record it in your documentation log. Ensure the identifier is consistent across your notes and photo sequence.
+6. Apply matched markings to each connected port and its cable:
+a. For every cable that is connected to a device port, place a small strip of masking tape over the port opening area (as instructed for this activity).
+b. Write a unique label on the port tape (e.g., “A01,” “A02,”)
+c. Place a second strip of masking tape on the corresponding cable near the connector end that plugs into the device.
+d. Write the exact same label on the cable tape as the label on the port tape. The port label and cable label must match one-to-one.
+7. Verify legibility and consistency:
+a. Ensure each label is clear, readable, and not duplicated across different cable-port pairs on the same device.
+b. Ensure the tape does not damage the port, bend pins, block ventilation, or leave adhesive residue inside the port.
+8. Photograph after marking:
+a. Take a close-up photo showing the labeled port tape and the labeled cable tape together in the same frame (whenever possible).
+b. Take a wider photo of the full panel to show all labeled ports and their connected cables.
+9. Update your documentation log for each labeled pair to include:
+a. Evidence ID (device identifier)
+b. Port location (front/rear/left/right panel)
+c. Port type (e.g., USB-A, USB-C, HDMI, RJ45) if identifiable Date:                              Section:
+d. Matching label used (e.g., “A01,” “A02,”)
+e. Cable description (type/color/any visible identifiers)
+f. Photo reference sequence (e.g., Photo 11–Photo 20)
+10. If instructed to move the device to your workstation, maintain control of the device and its cables. Keep each cable-port pair intact based on the matched labels.
+11. At the workstation, conduct a final verification:
+a. Confirm that every connected cable has a matching port label.
+b. Confirm that all labels are recorded in the documentation log and supported by photographs.
+c. Confirm there are no missing, duplicated, or inconsistent labels.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why is one-to-one matched labeling between a port and its connected cable important in dead-box digital forensics documentation?
+2. How can inconsistent or duplicated markings affect reconstruction, analysis accuracy, or the defensibility of your documentation?
+3. What handling practices (including glove use) reduce the risk of contamination or documentation error during port-and-cable marking?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 07. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section><section class="topic-group" id="group-2" data-category="2"><div class="group-heading"><div><span class="eyebrow">LABS 08–11</span><h2>Integrity, imaging, and file analysis</h2><p>hashing, forensic acquisition, and file signatures</p></div><button class="text-button expand-group" type="button" data-group="2">Open group</button></div><div class="activity-list"><article class="activity" data-category="2" data-search="command prompt file creation, hashing, and file comparison to use basic command prompt commands to create files in a specified directory, generate cryptographic hashes, and compare hashes to verify file integrity. pc, command prompt or windows terminal" id="lab-08">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 08</span><span class="activity-title">Command Prompt File Creation, Hashing, and File Comparison</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To use basic Command Prompt commands to create files in a specified directory, generate cryptographic hashes, and compare hashes to verify file integrity.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC, Command Prompt or Windows Terminal</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Open **Command Prompt**: press **Windows + R**, type **cmd**, then press **Enter**.
+2. Create a working directory in a specified location, for Desktop:
+a. Type: `cd %USERPROFILE%\Desktop` then press **Enter**.
+b. Type: `mkdir DF_LAB` then press **Enter**.
+c. Type: `cd DF_LAB` then press **Enter**.
+3. Create a text file using the command line:
+a. Type: `echo this is a file &gt; file1.txt` then press **Enter**.
+b. Confirm the file exists by typing: `dir` then press **Enter**.
+4. Create a second file to compare:
+a. Type: `copy file1.txt file2.txt` then press **Enter**.
+b. Confirm both files exist using: `dir` then press **Enter**.
+5. Generate hashes for both files using a built-in Windows tool (CertUtil):
+a. Type: `certutil -hashfile file1.txt SHA256` then press **Enter**.
+b. Copy the SHA-256 hash value exactly as shown.
+c. Type: `certutil -hashfile file2.txt SHA256` then press **Enter**.
+d. Copy the SHA-256 hash value exactly as shown.
+6. Compare the hash values:
+a. If the hashes match, the files are identical at the byte level.
+b. If the hashes do not match, the files differ.
+7. Modify one file to demonstrate integrity change:
+a. Type: `echo additional text &gt;&gt; file2.txt` then press **Enter**.
+b. Hash file2 again using: `certutil -hashfile file2.txt SHA256` then press **Enter**.
+c. Compare the new hash to the original hash of file1.
+8. Optional file comparison using built-in tools:
+a. Type: `fc file1.txt file2.txt` then press **Enter**.
+b. Observe the reported differences.
+9. Save your results: record the commands used, the hash values generated, and your observations on whether the files matched or differed.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why is hashing used in digital forensics, and what does it prove when two hash values match exactly?
+2. After you edited file2.txt, what happened to its hash value, and why is this expected? You may copy the hash values to support your answer.
+3. How do hashing and file comparison tools (e.g., `certutil` and `fc`) support chain of custody and evidence integrity?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 08. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="2" data-search="hashdeep file hashing and verification to use hashdeep to generate, store, and verify file hashes from a flash drive to support integrity checking. flashdrive, pc with hashdeep, cmd prompt" id="lab-09">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 09</span><span class="activity-title">Hashdeep File Hashing and Verification</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To use hashdeep to generate, store, and verify file hashes from a flash drive to support integrity checking.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flashdrive, PC with hashdeep, CMD Prompt</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into the PC. If a write blocker is available, connect the flash drive through the write blocker.
+2. Note the flash drive letter (e.g., E:, F:). Do not open the drive in File Explorer unless instructed.
+3. Open **Command Prompt** (or Windows Terminal).
+4. Confirm that hashdeep is accessible:
+a. Type: `hashdeep -V` then press **Enter**.
+b. If a version number appears, hashdeep is installed correctly.
+5. Create a working folder for outputs (example uses Desktop):
+a. Type: `cd %USERPROFILE%\Desktop` then press **Enter**.
+b. Type: `mkdir HASHDEEP_LAB` then press **Enter**.
+c. Type: `cd HASHDEEP_LAB` then press **Enter**.
+6. Generate a recursive hash list (manifest) for the flash drive contents (replace `E:\` with your actual drive letter):
+a. Type: `hashdeep -r -c sha256 E:\ &gt; flashdrive_manifest.txt` then press **Enter**.
+b. Wait for the command to finish.
+c. Open the text file if needed and confirm it contains file paths and hash values.
+7. Save a properly formatted audit file for later verification (recommended for re-checking integrity):
+a. Type: `hashdeep -r -c sha256 -l -o f -a E:\ &gt; flashdrive_audit.txt` then press **Enter**.
+b. Ensure the file is created in your working folder.
+8. Verification step (integrity check):
+a. Make a small, instructor-approved change to the flash drive contents (e.g., add one new text file), or keep the drive unchanged if instructed.
+b. Verify using the saved audit/manifest file (choose the file you created): * Type: `hashdeep -r -k flashdrive_manifest.txt E:\` then press **Enter**.
+9. Record the verification results displayed by hashdeep (you may copy the exact output lines and numbers).
+10. Rename your output files using the same filename format required for your other laboratory submissions, then prepare them for submission as instructed.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is the purpose of generating a hash manifest, and how can it be used later to detect changes on the flash drive?
+2. When you ran verification, what did hashdeep report (matched, missing, or changed files), and what do those results mean? You may copy the exact summary counts from the output.</div></section>
+          <p class="source-note">Adapted from Worksheet No. 09. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="2" data-search="ftk imager acquisition of a flash drive (forensic imaging) to acquire a forensically sound image of a flash drive using ftk imager and verify integrity through hashing. flash drive, pc (windows) with ftk imager installed, usb write blocker (optional, if available), external storage destination (internal drive folder or another clean usb drive), smartphone with camera (optional, for documentation)" id="lab-10">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 10</span><span class="activity-title">FTK Imager Acquisition of a Flash Drive (Forensic Imaging)</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To acquire a forensically sound image of a flash drive using FTK Imager and verify integrity through hashing.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, PC (Windows) with FTK Imager installed, USB write blocker (optional, if available), External storage destination (internal drive folder or another clean USB drive), Smartphone with camera (optional, for documentation)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into the PC. If a USB write blocker is available, connect the flash drive through the write blocker before proceeding.
+2. Close any pop-up windows (e.g., AutoPlay) and do not open the flash drive in File Explorer to avoid unnecessary changes to metadata.
+3. Launch **FTK Imager** with appropriate permissions (Run as administrator if required by your workstation setup).
+4. Identify the correct source drive:
+a. In FTK Imager, go to **File &gt; Add Evidence Item**.
+b. Select **Physical Drive** (recommended for full device imaging) or **Logical Drive** (if instructed), then click **Next**.
+c. Choose the correct flash drive from the list by verifying capacity and device details, then click **Finish**.
+5. Create the forensic image:
+a. Right-click the selected drive in the Evidence Tree and choose **Export Disk Image** (or **Create Disk Image**, depending on version).
+b. Select the **Source Type** (Physical Drive or Logical Drive as applicable), then click **Next**.
+c. Choose the image type as instructed (commonly **E01** for EnCase format or **Raw (DD)** for a bitstream image), then click **Next**.
+6. Enter case information (as applicable):
+a. Case number, evidence number, examiner name, and notes.
+b. Use the same naming convention required for your laboratory submissions when appropriate.
+7. Select the destination (where the image will be saved):
+a. Choose a folder on the PC or external storage with sufficient free space.
+b. Provide a clear filename for the image (follow your lab filename format if required).
+8. Configure verification and hashing:
+a. Enable **Verify images after they are created** (or equivalent option).
+b. Enable hash calculation (commonly **MD5** and/or **SHA1**; use **SHA256** if available and instructed).
+9. Start the imaging process and monitor for errors. Do not use the flash drive or remove it during acquisition.
+10. When imaging is complete, review the results:
+a. Confirm the imaging status indicates success. Date:                              Section:
+b. Record the hash values reported by FTK Imager (you may copy the exact values).
+c. Confirm that verification completed and that the verification result matches (if enabled).
+11. Save and organize outputs:
+a. Ensure the image file and any associated log or report files are stored in your designated lab folder.
+b. If required, export or save the acquisition report/log and keep it with your documentation.
+12. Safely eject the flash drive and any external destination drive after confirming all files are saved.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is the purpose of creating a forensic image instead of manually copying files from the flash drive?
+2. Why is verification through hashing important during and after imaging? You may copy the hash values from FTK Imager to support your answer.
+3. What errors or risks can occur during imaging (e.g., selecting the wrong drive, insufficient storage, write activity), and what steps in your procedure reduce these risks?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 10. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="2" data-search="file signature verification using hxd to identify and verify file signatures (magic numbers) using a hex editor to detect file type mismatches and basic file masquerading. flash drive, pc with hex editor neo, sample files on the flash drive (e.g., .jpg, .pdf, .docx, .zip)" id="lab-11">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 11</span><span class="activity-title">File Signature Verification Using HxD</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To identify and verify file signatures (magic numbers) using a hex editor to detect file type mismatches and basic file masquerading.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, PC with Hex Editor Neo, Sample files on the flash drive (e.g., .jpg, .pdf, .docx, .zip)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into the PC and identify its drive letter.
+2. Create a working folder on the flash drive named **BFS_GXX_FN** and copy at least five sample files into this folder. Include different file types (e.g., JPG, PDF, DOCX, ZIP).
+3. Launch **Hex Editor Neo**.
+4. Open a sample file in the hex editor:
+a. Click **File &gt; Open**.
+b. Browse to the flash drive folder **BFS_GXX_FN** and select a file.
+5. Locate the file signature (magic number):
+a. Look at the first bytes at the beginning of the file (Offset 00000000).
+b. Copy the first 8–16 hex bytes exactly as shown.
+6. Record the file information in your notes (you may copy the exact values):
+a. Filename and extension
+b. First 8–16 bytes (hex)
+c. Interpreted file type based on the signature
+7. Repeat Steps 4–6 for each sample file.
+8. Create a file mismatch test (file masquerading simulation):
+a. Select one file (e.g., a JPG image).
+b. Rename the file extension in File Explorer to another type (e.g., change `.jpg` to `.pdf`). Do not change the file content—rename only the extension.
+c. Re-open the renamed file in Hex Editor Neo and check the first bytes again.
+9. Compare the extension versus the signature:
+a. Determine whether the header bytes still indicate the original file type.
+b. Record your findings and explain whether the file is consistent or mismatched.
+10. Restore the file to its correct extension after the exercise, unless instructed otherwise.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is a file signature (magic number), and why is it more reliable than a filename extension for identifying file type?
+2. When you renamed a file extension without changing its content, what stayed the same in the hex view, and what does this prove? You may copy the header bytes you observed.
+3. How can file signature checking support digital forensic examinations involving concealed files, deceptive uploads, or malware disguised as documents?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 11. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section><section class="topic-group" id="group-3" data-category="3"><div class="group-heading"><div><span class="eyebrow">LABS 12–14</span><h2>Communication and concealment</h2><p>email, ciphers, and steganography</p></div><button class="text-button expand-group" type="button" data-group="3">Open group</button></div><div class="activity-list"><article class="activity" data-category="3" data-search="email forensics basics to examine email artifacts—especially message headers—to identify sender infrastructure, routing path, timestamps, and indicators of phishing or spoofing. pc with internet connection, email account access (webmail or email client), sample email(s) provided by the instructor (or a test email you send to yourself), text editor (notepad or similar) for documentation, screenshot tool (optional)" id="lab-12">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 12</span><span class="activity-title">Email Forensics Basics</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To examine email artifacts—especially message headers—to identify sender infrastructure, routing path, timestamps, and indicators of phishing or spoofing.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC with internet connection, Email account access (webmail or email client), Sample email(s) provided by the instructor (or a test email you send to yourself), Text editor (Notepad or similar) for documentation, Screenshot tool (optional)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Use only instructor-approved emails for this activity. Do not open suspicious links or download attachments.
+2. Select one email message for analysis (preferably one with a known sender or an instructor-provided sample).
+3. Open the email and locate the option to view the full message headers (commonly “Show original,” “View source,” or “View message details,” depending on the email provider).
+4. Copy the full raw headers into a text file for documentation. Save the file using the same filename format required for your other laboratory submissions.
+5. Identify and record the key header fields (you may copy exact values):
+a. **From**, **To**, and **Subject**
+b. **Date** (note the timezone)
+c. **Message-ID**
+d. **Return-Path**
+e. **Reply-To** (if present)
+f. **Received** lines (top to bottom) to reconstruct the routing path
+6. Reconstruct the email transmission timeline using the **Received** headers:
+a. List each hop in order, including server names and timestamps.
+b. Note any unusual routing (unexpected domains, private IPs, or inconsistent times).
+7. Check authentication results (if present in headers):
+a. **SPF** results
+b. **DKIM** results
+c. **DMARC** results Record whether each check passed, failed, or was not present.
+8. Evaluate potential phishing or spoofing indicators:
+a. Compare **From** display name versus actual email address and domain.
+b. Compare **Reply-To** domain with **From** domain.
+c. Look for mismatched sender domains, unusual sending servers, or failed authentication.
+9. Create a short findings summary in your documentation file that states:
+a. Whether the email appears legitimate or suspicious based on header evidence
+b. The specific header indicators supporting your conclusion Date:                              Section:
+10. Submit your documentation file as instructed (export to PDF if required by your instructor) and upload it to the course repository using the same filename format required for other laboratory submissions.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What do the **Received** header lines reveal about the email’s routing path, and why are they important in forensic reconstruction?
+2. How do **SPF**, **DKIM**, and **DMARC** contribute to detecting spoofed or fraudulent emails?
+3. What header-based indicators most strongly suggested legitimacy or suspicion in your analyzed email, and why?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 12. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="3" data-search="cipher creation and decryption exchange activity to apply basic encryption and decryption concepts by creating a ciphered message and accurately decrypting another group’s cipher. a4 paper, pen, cipher reference sheet" id="lab-13">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 13</span><span class="activity-title">Cipher Creation and Decryption Exchange Activity</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To apply basic encryption and decryption concepts by creating a ciphered message and accurately decrypting another group’s cipher.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>A4 Paper, Pen, Cipher reference sheet</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Form your group and assign roles (writer, encoder, checker, and recorder).
+2. Create an original poem, song, or paragraph containing **80 to 100 words**. Ensure the content is appropriate and clearly written.
+3. Count the words and revise as needed to meet the 80–100-word requirement.
+4. Present the plain-text message to your instructor for checking and approval before encryption.
+5. Choose a cipher method as instructed by your teacher (e.g., Caesar shift, substitution, transposition, Vigenère).
+6. Convert the approved plain text into ciphertext using your chosen method. Maintain consistency in rules for capitalization, spacing, punctuation, and symbols.
+7. Write the final ciphertext neatly and ensure it is readable for another group.
+8. Submit your ciphertext to the instructor. The instructor will exchange ciphers among groups.
+9. Receive another group’s ciphertext. Do not alter the received message.
+10. Decrypt the received ciphertext using logical analysis and/or the method information provided by the instructor.
+11. Present your decrypted output to the instructor for validation. If corrections are needed, revise your decryption steps and resubmit the corrected plain text.
+12. Record both your group’s encryption rules and your decryption process for reference.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What specific cipher method did your group use, and what rules ensured that encryption and decryption were consistent?
+2. What patterns or clues helped your group decrypt the other group’s message, and what challenges did you encounter?
+3. How do encryption and decryption relate to digital forensics work, particularly in investigations involving protected files, messaging apps, or ransomware?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 13. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="3" data-search="steganography demonstration using openstego to use openstego to embed a hidden message or file inside an image and extract it correctly to illustrate how data can be concealed in digital media. flash drive, pc with openstego installed, sample image file, text file or short message to hide" id="lab-14">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 14</span><span class="activity-title">Steganography Demonstration Using OpenStego</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To use OpenStego to embed a hidden message or file inside an image and extract it correctly to illustrate how data can be concealed in digital media.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, PC with OpenStego installed, Sample image file, Text file or short message to hide</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into the PC and identify its drive letter.
+2. Create a working folder on the flash drive named **BFS_OStego**.
+3. Prepare your files inside the working folder:
+a. Copy one cover image (preferably a **PNG** with a clear filename)
+b. Create a text file to hide (e.g., `secret.txt`)
+4. Launch **OpenStego**.
+5. Select the **Data Hiding** function.
+6. Configure the embedding settings:
+a. Choose the cover image (e.g., `cover.png`).
+b. Choose the message/file to embed (e.g., `secret.txt`).
+c. Set a password. Use a password you can remember for extraction.
+d. Choose an output filename for the stego image (e.g., `stego.png`) and save it in **BFS_OStego**.
+7. Run the embed process and confirm that the stego file was created successfully.
+8. Document file properties for comparison:
+a. Note the file size of the original cover and the stego image.
+b. Record any visible changes when viewing both images normally.
+9. Extract the hidden content:
+a. In OpenStego, switch to the **Extract Data** function.
+b. Select the stego image (e.g., `stego.png`).
+c. Enter the same password used during embedding (if applicable).
+d. Create an output folder named **BFS_OStego\EXTRACTED**.
+e. Start extraction and confirm the hidden file/message is recovered.
+10. Validate the result:
+a. Open the extracted text file and confirm that the content matches the original.
+b. If available, compare hashes of the original and extracted files to confirm exact matching.
+11. Organize your outputs on the flash drive: keep the cover image, stego image, original hidden file, and extracted file in clearly labeled folders.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is steganography, and how is it different from encryption in terms of visibility and intent?
+2. What could suggest that an image might contain hidden data?
+3. In digital forensics, what types of investigations might involve steganography, and what practical steps could an examiner take to detect or validate it?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 14. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section><section class="topic-group" id="group-4" data-category="4"><div class="group-heading"><div><span class="eyebrow">LABS 15–18</span><h2>Examination and interpretation</h2><p>disk and mobile recovery, Autopsy, and network traffic</p></div><button class="text-button expand-group" type="button" data-group="4">Open group</button></div><div class="activity-list"><article class="activity" data-category="4" data-search="disk forensics fundamentals to explain and apply the basic workflow of disk forensics: identify a storage device, acquire a forensic image, verify integrity with hashing, and conduct an initial examination in a defensible manner. pc (windows), storage device to be examined, forensic imaging tool (e.g., ftk imager), forensic analysis tool (e.g., autopsy), usb write blocker (optional, if available), external storage destination (for saving images and case files), notebook or text editor (for documentation)" id="lab-15">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 15</span><span class="activity-title">Disk Forensics Fundamentals</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To explain and apply the basic workflow of disk forensics: identify a storage device, acquire a forensic image, verify integrity with hashing, and conduct an initial examination in a defensible manner.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC (Windows), Storage device to be examined, Forensic imaging tool (e.g., FTK Imager), Forensic analysis tool (e.g., Autopsy), USB write blocker (optional, if available), External storage destination (for saving images and case files), Notebook or text editor (for documentation)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Prepare for examination and follow authorized access rules. Use only instructor-approved devices or images.
+2. Identify the storage device and record its details before acquisition:
+a. Device type (HDD/SSD/USB) and capacity
+b. Brand/model and serial number (if visible)
+c. Connection type (SATA/USB/NVMe via adapter)
+3. Prevent unnecessary changes to the source:
+a. Use a write blocker if available.
+b. Avoid opening the drive in File Explorer or running tools that write to the device.
+4. Acquire a forensic image (bit-for-bit copy):
+a. Launch the imaging tool (e.g., FTK Imager).
+b. Add the device as a **Physical Drive** (preferred) or select the instructor-provided image source.
+c. Create an image file in the required format (E01 or RAW/DD as instructed).
+d. Set a destination folder on external storage or a designated case drive with enough free space.
+5. Enable hashing and verification during imaging:
+a. Select hash algorithms as instructed (commonly MD5 and/or SHA-1; SHA-256 if available).
+b. Enable “verify image after creation” if the tool provides it.
+6. Start imaging and monitor for errors. Do not disconnect the device during the process.
+7. Record acquisition results (you may copy exact values):
+a. Image filename and location
+b. Start/end time and tool used
+c. Hash values and verification status
+8. Conduct an initial examination of the image:
+a. Open the analysis tool (e.g., Autopsy).
+b. Create a new case folder (store case files on the PC or case drive, not on the evidence source).
+c. Add the disk image as the data source and run ingest modules as instructed.
+9. Review initial artifacts and structure:
+a. Partition layout and file system type (e.g., NTFS, exFAT)
+b. File categories (documents, images, archives, executables) Date:                              Section:
+c. Deleted files (if available)
+d. Notable timestamps (created/modified/accessed as shown by the tool)
+10. Document findings and preserve outputs:
+a. Save logs or reports as required.
+b. Use the same filename format required for your other laboratory submissions.
+11. Close the case properly and store the image and documentation in the designated evidence or lab folder structure.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why is a bit-for-bit forensic image preferred over simple file copying when conducting disk forensics?
+2. How do hashing and verification support evidence integrity and defensibility in court or administrative proceedings?
+3. What are common sources of error or contamination in disk forensics (e.g., wrong drive selection, write activity, incomplete imaging), and which procedure steps reduce these risks?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 15. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="4" data-search="retrieving deleted photos on a mobile device to retrieve deleted photos from a smartphone using built- in recovery features and document the recovery process in a forensically mindful manner. smartphone (android or ios), charging cable (optional, to prevent power loss), internet connection (optional, for cloud-synced recovery), notebook or digital notes app (for documentation), pc (optional, for exporting recovered photos)" id="lab-16">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 16</span><span class="activity-title">Retrieving Deleted Photos on a Mobile Device</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To retrieve deleted photos from a smartphone using built- in recovery features and document the recovery process in a forensically mindful manner.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Smartphone (Android or iOS), Charging cable (optional, to prevent power loss), Internet connection (optional, for cloud-synced recovery), Notebook or digital notes app (for documentation), PC (optional, for exporting recovered photos)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Use only your own device or an instructor-authorized test device. Do not attempt recovery on a device you are not permitted to access.
+2. Enable airplane mode (if instructed by your instructor) to reduce background syncing or changes during the activity.
+3. Document the device details before recovery:
+a. Device brand and model
+b. Operating system version
+c. Gallery/Photos app used (e.g., Google Photos, Samsung Gallery)
+4. Attempt recovery using the device’s “Recently Deleted” feature (primary method):
+a. Open the Gallery/Photos app.
+b. Locate **Recently Deleted**, **Trash**, or **Bin** (name varies by app).
+c. Select the photos to recover.
+d. Tap **Restore** and confirm.
+5. Verify recovery:
+a. Return to the main photo library.
+b. Confirm that the photos are restored and viewable.
+6. If photos are not in Recently Deleted, check cloud-linked recovery (secondary method, if enabled):
+a. Open the cloud photo service used on the device (e.g., Google Photos or iCloud Photos).
+b. Check **Trash/Recently Deleted** within the service and restore if available.
+7. Document the results:
+a. Whether recovery succeeded or failed
+b. The location the photos were restored to
+c. Any timestamps or album changes observed
+8. Optional preservation step (if instructed):
+a. Export recovered photos to a designated folder or external storage (PC or flash drive).
+b. Keep original filenames and metadata intact where possible.
+9. Conclude the activity by writing a brief process summary that a third party could repeat.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is the difference between deleting a photo and permanently deleting a photo on a smartphone?
+2. What factors affect the success of photo recovery (e.g., time since deletion, app retention period, cloud sync settings)?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 16. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="4" data-search="introductory evidence review using autopsy to use autopsy to ingest a flash drive (or its image), perform basic artifact analysis, and document findings. flash drive, pc with autopsy installed external storage destination, usb write blocker (if available)" id="lab-17">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 17</span><span class="activity-title">Introductory Evidence Review Using Autopsy</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To use Autopsy to ingest a flash drive (or its image), perform basic artifact analysis, and document findings.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, PC with Autopsy installed External storage destination, USB write blocker (if available)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Insert the flash drive into the PC. If a USB write blocker is available, connect the flash drive through the write blocker.
+2. Close any AutoPlay prompts and do not open the flash drive in File Explorer to minimize unnecessary metadata changes.
+3. Launch **Autopsy** and Create a new case:
+a. Click **New Case**.
+b. Enter a case name and select a case directory (preferably on the PC, not on the flash drive).
+c. Enter examiner information if required by your instructor.
+5. Add a data source:
+a. Click **Add Data Source** and Select **Local Disk** if you are analyzing the flash drive directly, then choose the correct removable drive.
+c. If you were provided an image file instead, select **Disk Image or VM File** and browse to the image location.
+6. Select ingest modules (use instructor instructions; if none are given, enable common modules such as file type identification, recent activity, hash lookup, and keyword search).
+7. Start ingest and monitor progress. Do not remove the flash drive while Autopsy is ingesting.
+8. Perform basic analysis after ingest completes:
+a. Review **File Types** to see how files are categorized.
+b. Review **Deleted Files** and note any recoverable items.
+c. Review **Recent Activity** or related artifacts (if enabled).
+d. Use **Keyword Search** for instructor-provided keywords.
+9. Document findings (you may copy exact values such as filenames, timestamps, and hash values):
+a. Notable filenames and paths
+b. File metadata (created/modified/accessed times, as shown)
+c. Any deleted or suspicious files identified
+d. Hash matches or notable hash results (if enabled)
+10. Export or save a report (if required by your instructor):
+a. Use **Generate Report** and select the report format instructed.
+b. Save the report in your case folder and name it is using the same filename format required for your other laboratory submissions.
+11. Close the case properly and safely eject the flash drive after confirming that analysis outputs are saved.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. Why is it recommended to create an Autopsy case folder on the PC rather than storing the case files on the flash drive being examined? Date:                              Section:
+2. What types of artifacts or views in Autopsy are most useful for quickly identifying user activity (e.g., recent files, deleted files, file types), and why?
+3. How does ingest processing (including hashing and file type identification) support efficient and defensible digital forensic analysis?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 17. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="4" data-search="network traffic capture and web session observation to capture and interpret basic network traffic generated by a web browsing session using wireshark and relate observed artifacts to digital forensics and incident investigation. flash drive, pc (windows) with wireshark installed, internet connection, web browser (any modern browser)" id="lab-18">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 18</span><span class="activity-title">Network Traffic Capture and Web Session Observation</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To capture and interpret basic network traffic generated by a web browsing session using Wireshark and relate observed artifacts to digital forensics and incident investigation.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>Flash drive, PC (Windows) with Wireshark installed, Internet connection, Web browser (any modern browser)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Prepare your workstation. Ensure Wireshark is installed and that you have permission to capture traffic on the network you are using.
+2. Insert your flash drive and create a folder named **BFS_Wireshark_Vulnweb** for saving outputs (captures and notes).
+3. Launch **Wireshark**.
+4. Select the correct network interface for capture (e.g., Wi-Fi or Ethernet). Confirm activity by checking the moving traffic graph beside the interface name.
+5. Start a capture by clicking **Start Capturing Packets**.
+6. Open your web browser and navigate to the authorized demo site **vulnweb**.
+7. Perform normal browsing actions for 2–3 minutes (e.g., open a few pages, click links, view images).
+8. Return to Wireshark and stop the capture.
+9. Save the capture file as a **.pcapng** inside **BFS_Wireshark_Vulnweb** on your flash drive. Use the same filename format required for your other laboratory submissions.
+10. Apply basic display filters and document what you observe (you may copy exact values such as IP addresses, ports, and protocol names):
+a. Filter DNS queries: `dns`
+b. Filter web traffic: `http` (if present) and `tls` (if HTTPS is used)
+c. Filter by the demo site hostname (use the domain shown in DNS results)
+11. Identify and record key session artifacts from the capture:
+a. Client IP address (your PC) and destination server IP address
+b. Protocols observed (e.g., DNS, TCP, TLS, HTTP)
+c. Notable ports (e.g., 53, 80, 443)
+12. If HTTP traffic is present, use **Follow → HTTP Stream** on a relevant packet to observe the request/response structure. If TLS is used, note that content is encrypted and focus on metadata (SNI/hostnames, IPs, timing, and certificate-related details if visible).
+13. Create a short documentation note (plain text file) in the same folder summarizing: capture time window, interface used, filters applied, and the main observations you recorded.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. What is “network latency” in the context of packet capture, and what capture observations can suggest delay (e.g., retransmissions, slow handshakes, long response times)? Date:                              Section:
+2. Which parts of a web session are visible in Wireshark when traffic is HTTP versus HTTPS (TLS), and why does encryption matter for digital forensics interpretation?
+3. How can a packet capture support an investigation (e.g., timeline building, identifying contacted domains/IPs, detecting data exfiltration indicators) without relying on the content of encrypted traffic?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 18. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section><section class="topic-group" id="group-5" data-category="5"><div class="group-heading"><div><span class="eyebrow">LABS 19–20</span><h2>Reporting and challenge</h2><p>mock-trial case preparation and the Capture the Flag activity</p></div><button class="text-button expand-group" type="button" data-group="5">Open group</button></div><div class="activity-list"><article class="activity" data-category="5" data-search="digital forensics case folder preparation for a mock trial to prepare a complete, organized, and defensible digital forensics case folder for mock trial use, including documentation, exhibits, and investigator notes. pc (windows), word processor (ms word or equivalent), pdf exporter (built-in or third-party), usb flash drive or external storage (optional), digital forensics tools used in prior labs (e.g., ftk imager, autopsy, hash tools)" id="lab-19">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 19</span><span class="activity-title">Digital Forensics Case Folder Preparation for a Mock Trial</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To prepare a complete, organized, and defensible digital forensics case folder for mock trial use, including documentation, exhibits, and investigator notes.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>PC (Windows), Word processor (MS Word or equivalent), PDF exporter (built-in or third-party), USB flash drive or external storage (optional), Digital forensics tools used in prior labs (e.g., FTK Imager, Autopsy, hash tools)</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Assume the role of the digital forensic investigator assigned to the case. Review the instructor-provided case scenario and list all alleged incidents, relevant dates, and parties involved.
+2. Create a master case folder on your PC using the required filename format for laboratory outputs. Use a clear case identifier (e.g., CASE_###_MOCKTRIAL).
+3. Inside the master folder, create the following subfolders in this order to standardize organization:
+a. 01_Admin_and_Authority
+b. 02_Chain_of_Custody
+c. 03_Evidence_Inventory
+d. 04_Acquisition_and_Hash
+e. 05_Analysis_Notes
+f. 06_Reports
+g. 07_Exhibits
+h. 08_Timeline
+i. 09_Testimony_Prep
+4. Populate **01_Admin_and_Authority** with documents that establish authority and scope (as provided or simulated), such as written authorization, consent, scope statement, and objectives.
+5. Create a Chain of Custody document and place it in **02_Chain_of_Custody**. Include: evidence ID, description, date/time received, handler, action taken, transfer details, and signatures/initials (simulated if required).
+6. Create an Evidence Inventory sheet and place it in **03_Evidence_Inventory**. Assign unique evidence IDs (e.g., DE-001, DE-002) and describe each item precisely (device type, brand/model, serial, capacity, condition).
+7. In **04_Acquisition_and_Hash**, store all acquisition outputs and integrity records:
+a. Imaging logs (FTK Imager logs, if used)
+b. Hash manifests (hashdeep output, if used)
+c. A summary page listing each evidence item and its corresponding hash values (you may copy exact values)
+8. In **05_Analysis_Notes**, write structured investigator notes that separate facts from interpretation. For each evidence item, include: what was examined, tool used, settings/filters, steps performed, and observations with timestamps. Date:                              Section:
+9. In **06_Reports**, place formal reports exported from tools (Autopsy reports, email header analysis write-ups, Wireshark summaries). Ensure reports are in PDF format and consistently named.
+10. In **07_Exhibits**, prepare court-ready exhibits that can be referenced during mock trial: screenshots, relevant file listings, header extracts, hash tables, timelines, and annotated images. Each exhibit must have: Exhibit ID, brief description, source, date created, and page number if printed.
+11. In **08_Timeline**, create a single consolidated timeline document that lists events in chronological order. Include: event date/time (with timezone), artifact/source, description, and relevance to the case theory.
+12. In **09_Testimony_Prep**, prepare a concise witness packet: investigator role, qualifications (simulated as instructed), methods used, key findings, limitations, and a list of exhibits you will authenticate during testimony.
+13. Perform a completeness check: confirm every claim in your report has supporting documentation and that every exhibit traces back to a source artifact in the folder.
+14. Export the entire case folder for submission:
+a. If required, compress the master folder into a single archive (ZIP).
+b. Convert narrative documents to PDF.
+c. Use the same filename format required for other laboratory submissions.
+15. Submit by uploading the required PDF(s) or archive to the course repository using the platform or instructions provided by your instructor.</div></section>
+          
+          <section class="content-block"><h3>Guide questions</h3><div class="source-text questions">1. As the digital forensic investigator, how does a well-structured case folder support your credibility and the admissibility of your exhibits during a mock trial?
+2. What documents and artifacts are essential to prove evidence integrity from acquisition to presentation (e.g., chain of custody, hashes, tool logs), and why?
+3. What limitations should you disclose in your report and testimony to remain accurate and defensible (e.g., scope limits, encryption, missing logs, tool constraints)?</div></section>
+          <p class="source-note">Adapted from Worksheet No. 19. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article><article class="activity" data-category="5" data-search="untitled activity to retrieve all required payloads and the final message from an instructor-provided file and submit a complete handwritten output within the allotted time. a4 paper, flash drive,laptop or phone with necessary tools and internet connectivity, pen" id="lab-20">
+      <details class="activity-details" >
+        <summary><span class="activity-number">LAB 20</span><span class="activity-title">Capture the Flag Scoring System and Submission Requirements</span><span class="chevron" aria-hidden="true">⌄</span></summary>
+        <div class="activity-body">
+          <div class="meta-grid"><section class="info-block"><h3>Objective</h3><p>To retrieve all required payloads and the Final Message from an instructor-provided file and submit a complete handwritten output within the allotted time.</p></section><section class="info-block"><h3>Materials and equipment</h3><p>A4 paper, Flash drive,Laptop or phone with necessary tools and internet connectivity, Pen</p></section></div>
+          <section class="content-block"><h3>Procedure</h3><div class="source-text">1. Each group provides a flash drive. The instructor will provide the initial file to be used for the activity.
+2. Wait for the instructor’s signal to start. Begin only when the start is announced.
+3. Retrieve all necessary payloads from the provided file through group strategy and coordinated task delegation.
+4. Prepare three (3) handwritten A4 sheets, following this required format:
+a. Page 1: Payload 1
+b. Page 2: Payload 2
+c. Page 3: Final Message and Team Members
+5. Ensure that all three pages are complete, legible, and properly labeled. No partial pages are accepted.
+6. Submit the complete three-page handwritten output within the allowed time period or submission window, as instructed.</div></section>
+          <section class="content-block"><h3>Scoring and group roles</h3><div class="source-text">SCORING GUIDE (Maximum: 40 points)
+1. Completed and submitted within the First Period: 40 points + bonus score
+2. Completed and submitted within the Second Period: 40 points
+3. Not completed within class periods but submitted today: 30 points
+4. Submitted tomorrow: 20 points
+5. Incomplete submission (any missing page or missing required content): 0 points SUGGESTED GROUP ROLES Detective – leads the investigation and overall task direction Documenter – records the group’s outputs and organizes the written work Draftsman – prepares the clean handwritten final copy Data Analyst – examines details, patterns, and gathered information Data Provider – provides internet access or reference support Device Provider – provides a phone, laptop, or computer when needed Digital Recorder – takes photos and documents the group’s progress</div></section>
+          
+          <p class="source-note">Adapted from Worksheet No. 20. Follow instructor directions and use only authorized devices, accounts, storage, and networks.</p>
+        </div>
+      </details>
+    </article></div></section></div><div class="empty-state" id="empty">No activities match that search. Try a tool name or a broader term.</div><p class="notice"><strong>Classroom use:</strong> Activities are organized from the supplied worksheets. Use instructor-provided submission rules. Follow authorization, evidence-handling, safety, and privacy instructions for every exercise.</p></main></div></div>
+<script>
+(()=>{const search=document.getElementById('search'),cards=[...document.querySelectorAll('.activity')],groups=[...document.querySelectorAll('.topic-group')],empty=document.getElementById('empty');let active=null;
+function apply(){const q=search.value.trim().toLowerCase();let shown=0;cards.forEach(c=>{const match=(!active||c.dataset.category===active)&&(!q||c.dataset.search.includes(q)||c.innerText.toLowerCase().includes(q));c.hidden=!match;if(match)shown++});groups.forEach(g=>{g.hidden=!([...g.querySelectorAll('.activity')].some(c=>!c.hidden))});empty.style.display=shown?'none':'block'}
+search.addEventListener('input',apply);document.querySelectorAll('.topic-link').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const n=a.dataset.filter;active=active===n?null:n;document.querySelectorAll('.topic-link').forEach(x=>x.classList.toggle('active',x.dataset.filter===active));if(active){document.getElementById('group-'+active).scrollIntoView({behavior:'smooth',block:'start'})}apply()}));
+document.getElementById('expandAll').addEventListener('click',()=>document.querySelectorAll('.activity-details').forEach(d=>{if(!d.closest('.activity').hidden)d.open=true}));document.getElementById('collapseAll').addEventListener('click',()=>document.querySelectorAll('.activity-details').forEach(d=>d.open=false));document.querySelectorAll('.expand-group').forEach(b=>b.addEventListener('click',()=>{const ds=[...document.querySelectorAll('#group-'+b.dataset.group+' .activity-details')];const open=ds.some(d=>!d.open);ds.forEach(d=>d.open=open)}));
+// Browser-level deterrents only; these cannot block screenshots or determined extraction.
+document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('dragstart',e=>e.preventDefault());document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&['a','c','s','u','p'].includes(e.key.toLowerCase()))e.preventDefault()});})();
+</script></body></html>
